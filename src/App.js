@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useState } from 'react'
+import Expandable from './components/Expandable'
 
-function App() {
+const information = [
+  {
+    header: 'Why everyone should live forever',
+    note: 'This is highly sensitive information ... !!!!'
+  },
+  {
+    header: 'The internet disappears',
+    note:
+      'I just uncovered the biggest threat...'
+  },
+  {
+    header: 'The truth about Elon musk and Mars!',
+    note: 'Nobody tells you this...'
+  }
+]
+
+function App () {
+  const [activeIndex, setActiveIndex] = useState(null)
+  const onToggle = evt => setActiveIndex(evt.target.dataset.index)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className='App'>
+      {information.map(({ header, note }, index) => (
+        <Expandable
+          key={index}
+          onToggle={onToggle}
+          shouldExpand={index === +activeIndex}
         >
-          Learn React
-        </a>
-      </header>
+          <Expandable.Header
+            style={{ color: 'red', border: '1px solid teal' }}
+            data-index={index}>
+            {header}{' '}
+            <Expandable.Icon />
+          </Expandable.Header>
+          <Expandable.Body>{note}</Expandable.Body>
+        </Expandable>
+      ))}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
