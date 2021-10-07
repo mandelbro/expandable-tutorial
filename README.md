@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# React Advanced Custom Hooks Tutorial
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Companion
 
 ## Available Scripts
 
